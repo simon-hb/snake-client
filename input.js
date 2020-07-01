@@ -1,3 +1,4 @@
+const { MOVE_UP_KEY, MOVE_LEFT_KEY, MOVE_DOWN_KEY, MOVE_RIGHT_KEY, key_mapping } = require('./constants');
 const handleUserInput = function(conn) {
   const stdin = process.stdin;
   
@@ -5,25 +6,20 @@ const handleUserInput = function(conn) {
     if (key === '\u0003') {
       process.exit();
     }
-  })
-  stdin.on('data', (key) => {
     if (key === 'w') {
-      conn.write('Move: up');
+      conn.write(MOVE_UP_KEY);
     }
-  })
-  stdin.on('data', (key) => {
     if (key === 'a') {
-      conn.write('Move: left');
+      conn.write(MOVE_LEFT_KEY);
     }
-  })
-  stdin.on('data', (key) => {
     if (key === 's') {
-      conn.write('Move: down');
+      conn.write(MOVE_DOWN_KEY,);
     }
-  })
-  stdin.on('data', (key) => {
     if (key === 'd') {
-      conn.write('Move: right');
+      conn.write(MOVE_RIGHT_KEY);
+    }
+    if (key_mapping[key]){
+      conn.write('Say: ' + key_mapping[key])
     }
   })
 };
